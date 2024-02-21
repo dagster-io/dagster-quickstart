@@ -1,20 +1,28 @@
+<div align="center">
+  <a target="_blank" href="https://dagster.io" style="background:none">
+    <img alt="dagster logo" src="https://github.com/dagster-io/dagster-quickstart/assets/5807118/7010804c-05a6-4ef4-bfc8-d9c88d458906" width="auto" height="120px">
+  </a>
+</div>
+
 # Dagster Quickstart
 
 ## Getting started
 
-If you are running the Dagster Quickstart in a GitHub Codepsace, the requirements have already been installed. Simply run:
+If you are running the Dagster Quickstart in a GitHub Codepsace, the requirements have already been installed! Simply run:
 
 ```sh
 source .venv/bin/activate
 ```
 
-Then, start Dagster:
+And then, start Dagster:
 
 ```bash
 dagster dev
 ```
 
-Open http://localhost:3000 with your browser to see the project.
+Navigate to the port forwarding for your Codespace, and open the URL mapped to port 3000.
+
+If running locally, then navigate to http://localhost:3000 in your browser.
 
 ---
 
