@@ -9,7 +9,8 @@ RUN apt-get update \
 COPY setup.py .
 
 RUN \
-    pip3 --disable-pip-version-check --no-cache-dir install -e .[dev] \
-    && rm -rf /tmp/pip-tmp
+    pip install uv \
+    && uv venv \
+    && uv pip install -e .[dev]
 
 COPY . .

@@ -1,16 +1,14 @@
-# dagster_quickstart
-
-This is a [Dagster](https://dagster.io/) project scaffolded with [`dagster project scaffold`](https://docs.dagster.io/getting-started/create-new-project).
+# Dagster Quickstart
 
 ## Getting started
 
-First, install your Dagster code location as a Python package. By using the --editable flag, pip will install your Python package in ["editable mode"](https://pip.pypa.io/en/latest/topics/local-project-installs/#editable-installs) so that as you develop, local code changes will automatically apply.
+If you are running the Dagster Quickstart in a GitHub Codepsace, the requirements have already been installed. Simply run:
 
-```bash
-pip install -e ".[dev]"
+```sh
+source .venv/bin/activate
 ```
 
-Then, start the Dagster UI web server:
+Then, start Dagster:
 
 ```bash
 dagster dev
@@ -18,7 +16,15 @@ dagster dev
 
 Open http://localhost:3000 with your browser to see the project.
 
-You can start writing assets in `dagster_quickstart/assets.py`. The assets are automatically loaded into the Dagster code location as you define them.
+---
+
+If you aren't using Codespaces, you'll need to install the dependencies yourself:
+
+```sh
+uv venv
+source .venv/bin/activate
+uv pip install -e ".[dev]"
+```
 
 ## Development
 
@@ -33,12 +39,6 @@ Tests are in the `dagster_quickstart_tests` directory and you can run tests usin
 ```bash
 pytest dagster_quickstart_tests
 ```
-
-### Schedules and sensors
-
-If you want to enable Dagster [Schedules](https://docs.dagster.io/concepts/partitions-schedules-sensors/schedules) or [Sensors](https://docs.dagster.io/concepts/partitions-schedules-sensors/sensors) for your jobs, the [Dagster Daemon](https://docs.dagster.io/deployment/dagster-daemon) process must be running. This is done automatically when you run `dagster dev`.
-
-Once your Dagster Daemon is running, you can start turning on schedules and sensors for your jobs.
 
 ## Deploy on Dagster Cloud
 
