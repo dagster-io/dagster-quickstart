@@ -12,12 +12,6 @@ A Dagster demo project to get up-and-running ASAP -- launch a GitHub Codespace a
 
 If you are running the Dagster Quickstart in a GitHub Codepsace, the requirements have already been installed! Simply run:
 
-```sh
-source .venv/bin/activate
-```
-
-And then, start Dagster:
-
 ```bash
 dagster dev
 ```
@@ -31,8 +25,6 @@ If running locally, then navigate to http://localhost:3000 in your browser.
 If you aren't using Codespaces, you'll need to install the dependencies yourself:
 
 ```sh
-uv venv
-source .venv/bin/activate
 uv pip install -e ".[dev]"
 ```
 
