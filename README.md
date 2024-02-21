@@ -6,6 +6,8 @@
 
 # Dagster Quickstart
 
+A Dagster demo project to get up-and-running ASAP -- launch a GitHub Codespace and start building data pipelines with no local installation necessary.
+
 ## Getting started
 
 If you are running the Dagster Quickstart in a GitHub Codepsace, the requirements have already been installed! Simply run:
