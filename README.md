@@ -16,13 +16,19 @@ If you are running the Dagster Quickstart in a GitHub Codepsace, the requirement
 dagster dev
 ```
 
-Navigate to the port forwarding for your Codespace, and open the URL mapped to port 3000.
+Click **Open in Browser** when prompted, or navigate to the **Forwarded Ports** tab, and open the **Forwarded Address** for port 3000.
 
 If running locally, then navigate to http://localhost:3000 in your browser.
 
+<img width="468" style="border: 1px solid black;" alt="Codespace Open In Browser" src="https://github.com/dagster-io/dagster-quickstart/assets/5807118/2d598c56-2bf5-4ffb-927f-5d2e4a5e6967">
+
+You'll be presented with the lineage of assets in the quickstart project.
+
+![Dagster Landing Page](https://github.com/dagster-io/dagster-quickstart/assets/5807118/85d6500f-2264-4ad6-adee-f88d8cb2bfe8)
+
 ---
 
-If you aren't using Codespaces, you'll need to install the dependencies yourself:
+If you are not using Codespaces, then you'll need to install the dependencies yourself before running `dagster dev`:
 
 ```sh
 uv pip install -e ".[dev]"
