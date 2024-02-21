@@ -1,15 +1,13 @@
 import json
-
-import pandas as pd
 import requests
 
+import pandas as pd
 
 from dagster import (
     MaterializeResult,
     MetadataValue,
     asset,
 )
-
 from dagster_quickstart.configurations import HNStoriesConfig
 
 
@@ -23,7 +21,7 @@ def hackernews_top_story_ids(config: HNStoriesConfig):
 
 
 @asset(deps=[hackernews_top_story_ids])
-def hackernews_top_stories(config: HNStoriesConfig):
+def hackernews_top_stories(config: HNStoriesConfig) -> MaterializeResult:
     """Get items based on story ids from the HackerNews items endpoint."""
     with open(config.hn_top_story_ids_path, "r") as f:
         hackernews_top_story_ids = json.load(f)
