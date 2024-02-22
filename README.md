@@ -8,15 +8,20 @@
 
 Get up-and-running with a Dagster quickstart project -- open the project in a GitHub Codespace and start building data pipelines with no local installation necessary.
 
-## Getting started
+## Running The Project
 
-If you are running the Dagster Quickstart in a GitHub Codepsace, the requirements have already been installed! Simply run:
+### Option 1. - Using GitHub Codespaces
+
+1. 
+
+
+In the terminal of the VSCode editor, start Dagster by running the following command:
 
 ```bash
 dagster dev
 ```
 
-Click **Open in Browser** when prompted, or navigate to the **Forwarded Ports** tab, and open the **Forwarded Address** for port 3000.
+When prompted, click **Open in Browser**, or navigate to the **Forwarded Ports** tab, and open the **Forwarded Address** for port 3000.
 
 If running locally, then navigate to http://localhost:3000 in your browser.
 
@@ -26,13 +31,30 @@ You'll be presented with the lineage of assets in the quickstart project.
 
 ![Dagster Landing Page](https://github.com/dagster-io/dagster-quickstart/assets/5807118/85d6500f-2264-4ad6-adee-f88d8cb2bfe8)
 
----
 
-If you are not using Codespaces, then you'll need to install the dependencies yourself before running `dagster dev`:
+### Option 2. - Running Locally
 
-```sh
-uv pip install -e ".[dev]"
-```
+1. Clone the Dagster Quickstart repository:
+
+    ```sh
+    git clone https://github.com/dagster-io/dagster-quickstart
+
+    cd dagster-quickstart
+    ```
+
+2. Install the required dependencies.
+
+    Here we are using `-e`, for ["editable mode"](https://pip.pypa.io/en/latest/topics/local-project-installs/#editable-installs), so that when Dagster code is modified, the changes automatically apply. 
+
+    ```sh
+    pip install -e ".[dev]"
+    ```
+
+3. Run the project!
+
+    ```sh
+    dagster dev
+    ```
 
 ## Development
 
@@ -42,11 +64,7 @@ You can specify new Python dependencies in `setup.py`.
 
 ### Unit testing
 
-Tests are in the `dagster_quickstart_tests` directory and you can run tests using `pytest`:
-
-```bash
-pytest dagster_quickstart_tests
-```
+Tests are in the `dagster_quickstart_tests` directory and you can run tests using `pytest`.
 
 ## Deploy on Dagster Cloud
 
