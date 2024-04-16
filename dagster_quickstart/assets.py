@@ -1,5 +1,6 @@
 import json
 import requests
+import re
 
 import pandas as pd
 
@@ -8,35 +9,33 @@ from dagster import (
     MetadataValue,
     asset,
 )
-from dagster_quickstart.configurations import HNStoriesConfig
+from dagster_quickstart.configurations import NaptanConfig
 
+def make_point(lng,lat):
+  return json.dumps({'type':'Point','coordinates':[float(lng),float(lat)]})
+
+def bq_names(raw_name):
+  bq_name = re.sub(r'\W+', '', raw_name)
+  return bq_name
 
 @asset
-def hackernews_top_story_ids(config: HNStoriesConfig):
-    """Get top stories from the HackerNews top stories endpoint."""
-    top_story_ids = requests.get("https://hacker-news.firebaseio.com/v0/topstories.json").json()
+def get_naptan(config: NaptanConfig):
+    """Get Naptan dataset."""
+    naptan = requests.get("https://naptan.api.dft.gov.uk/v1/access-nodes?dataFormat=CSV").content.decode('utf-8')
 
-    with open(config.hn_top_story_ids_path, "w") as f:
-        json.dump(top_story_ids[: config.top_stories_limit], f)
-
-
-@asset(deps=[hackernews_top_story_ids])
-def hackernews_top_stories(config: HNStoriesConfig) -> MaterializeResult:
-    """Get items based on story ids from the HackerNews items endpoint."""
-    with open(config.hn_top_story_ids_path, "r") as f:
-        hackernews_top_story_ids = json.load(f)
-
-    results = []
-    for item_id in hackernews_top_story_ids:
-        item = requests.get(f"https://hacker-news.firebaseio.com/v0/item/{item_id}.json").json()
-        results.append(item)
-
-    df = pd.DataFrame(results)
-    df.to_csv(config.hn_top_stories_path)
+    with open(config.raw_path, "w") as f:
+        f.write(naptan)
+        
+@asset(deps=[get_naptan])
+def enrich_naptan(config: NaptanConfig) -> MaterializeResult:
+    """Enrich Naptan dataset with GeoJson."""
+    df = pd.read_csv(config.raw_path, dtype = 'str')
+    df['geom'] = df.apply(lambda x: make_point(x['Longitude'], x['Latitude']), axis=1)
+    df.rename(columns=bq_names).head()
+    df.to_csv(config.enriched_path, index = False)
 
     return MaterializeResult(
         metadata={
-            "num_records": len(df),
-            "preview": MetadataValue.md(str(df[["title", "by", "url"]].to_markdown())),
+            "preview": MetadataValue.md(str(df.head().to_markdown())),
         }
     )
