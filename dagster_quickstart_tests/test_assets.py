@@ -1,8 +1,7 @@
 import os
 import unittest
 
-from dagster_quickstart.assets import hackernews_top_story_ids, hackernews_top_stories
-from dagster_quickstart.configurations import HNStoriesConfig
+from dagster_quickstart.assets import HNStoriesConfig, hackernews_top_story_ids, hackernews_top_stories
 from unittest import mock
 
 
