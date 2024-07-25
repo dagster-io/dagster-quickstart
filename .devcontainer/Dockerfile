@@ -12,7 +12,7 @@ COPY setup.py .
 ENV VIRTUAL_ENV /usr/local/
 
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
-    && . $HOME/.cargo/env \
+    && uv venv \
     && uv pip install -e .[dev]
 
 COPY . .
