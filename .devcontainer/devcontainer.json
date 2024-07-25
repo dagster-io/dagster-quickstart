@@ -12,5 +12,7 @@
         "3000": {
             "label": "Dagster"
         }
-    }
+    },
+    "postCreateCommand": "chmod 777 /tmp",
+    "remoteUser": "root"
 }
