@@ -10,7 +10,7 @@ COPY setup.py .
 
 
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
-    && . $HOME/.cargo/env  \
+    && . $HOME/.local/bin/env  \
     && uv venv \
     && uv pip install --system -e .[dev]
 
